@@ -108,20 +108,6 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class SeparateWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-        child: Text("Button moved to separate widget"),
-        onPressed: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('Button moved to separate widget'),
-            duration: Duration(seconds: 3),
-          ));
-        });
-  }
-}
-
 class _HomePageState extends State<HomePage> {
   int likeCounter = 0;
   bool isLikePressed = false;
