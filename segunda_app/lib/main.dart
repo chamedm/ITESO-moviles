@@ -1,3 +1,9 @@
+// ************************
+// ************************
+// EJERCICIO EN CLASE
+// ************************
+// ************************
+
 // import 'package:flutter/material.dart';
 
 // void main() => runApp(MyApp());
@@ -85,6 +91,12 @@
 //   }
 // }
 
+// ************************
+// ************************
+// TAREA 2
+// ************************
+// ************************
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -112,15 +124,53 @@ class _HomePageState extends State<HomePage> {
   int likeCounter = 0;
   bool isLikePressed = false;
   bool isDislikePressed = false;
+  String isEven(number) {
+    return likeCounter % 2 == 0 ? "par" : "impar";
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void _showSnackBar(String message) {
+    try {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text(message),
+          duration: Duration(seconds: 2),
+          action: SnackBarAction(
+            label: 'X',
+            onPressed: () {},
+          )));
+    } on Exception catch (e, s) {
+      print(s);
+    }
+  }
+
+  void _showEvenDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text("Likes, ¿Par o impar?"),
+              content: Text('Likes son ${isEven(likeCounter)}'),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                )
+              ]);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('ITESO App'),
       ),
       body: SingleChildScrollView(
         child: Column(
-          // children: [Image.asset("assets/Religion.jpg")],
           children: [
             Image.network("https://pbs.twimg.com/media/DburBCaVQAAM_2g.jpg"),
             Row(
@@ -174,14 +224,15 @@ class _HomePageState extends State<HomePage> {
                   Column(children: [
                     IconButton(
                       icon: Icon(Icons.mail, size: 30),
-                      onPressed: () => {},
+                      onPressed: () =>
+                          {_showSnackBar("Enviando correo info@iteso.mx")},
                     ),
                     Text("Correo")
                   ]),
                   Column(children: [
                     IconButton(
                       icon: Icon(Icons.call, size: 30),
-                      onPressed: () => {},
+                      onPressed: () => {_showSnackBar("Llamando 33166225")},
                     ),
                     Text("Llamar")
                   ]),
@@ -189,9 +240,7 @@ class _HomePageState extends State<HomePage> {
                     IconButton(
                       icon: Icon(Icons.directions, size: 30),
                       onPressed: () => {
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text("Holi"),
-                            duration: Duration(seconds: 3)))
+                        _showSnackBar("Av. Periferico Manuel Gomez Morin 8585")
                       },
                     ),
                     Text("Direcciones")
@@ -203,7 +252,15 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(10),
               child: Text(
                   "ITESO, Universidad Jesuita de Guadalajara — distinct from the state University of Guadalajara — also known as Instituto Tecnológico y de Estudios Superiores de Occidente, ITESO, is a Jesuit university in the Western Mexican state of Jalisco, located in the municipality of Tlaquepaque in the Guadalajara Metropolitan Area."),
-            )
+            ),
+            Column(children: [
+              IconButton(
+                icon: Icon(Icons.question_answer, size: 30),
+                onPressed: () => {_showEvenDialog(context)},
+                color: Colors.yellow[900],
+              ),
+              Text("Likes, ¿par o impar?")
+            ])
           ],
         ),
       ),
