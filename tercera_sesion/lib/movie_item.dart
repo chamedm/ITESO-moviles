@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MovieItem extends StatelessWidget {
-  const MovieItem({Key key}) : super(key: key);
+  final Map<String, String> pelicula;
+  MovieItem({Key key, @required this.pelicula}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MovieItem extends StatelessWidget {
             children: [
               Positioned.fill(
                 child: Image.network(
-                  "https://i.imgur.com/trdzMAl.jpg",
+                  "${pelicula["image"]}",
                   fit: BoxFit.fitHeight,
                 ),
               ),
@@ -31,7 +32,22 @@ class MovieItem extends StatelessWidget {
                       )),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: [Text("Titulo"), Text("Rating")],
+                    children: [
+                      Text(
+                        "Titulo: ${pelicula["title"]}",
+                        style: TextStyle(
+                          color: Colors.grey[200],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Rating: ${pelicula["description"]}",
+                        style: TextStyle(
+                          color: Colors.grey[200],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               )

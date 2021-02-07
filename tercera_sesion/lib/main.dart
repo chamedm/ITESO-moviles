@@ -215,14 +215,13 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             height: MediaQuery.of(context).size.height / 4,
-            color: Colors.green,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _listElements.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                     onTap: () => _showSelectionDialog(context),
-                    child: MovieItem());
+                    child: MovieItem(pelicula: _listElements[index]));
               },
             ),
           )
