@@ -1,7 +1,8 @@
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_grains.dart';
+import 'package:estructura_practica_1/models/product_cup.dart';
 
-enum ProductType { BEBIDAS, GRANO, POSTRES }
+enum ProductType { BEBIDAS, GRANO, TAZAS }
 
 class ProductRepository {
   static List<dynamic> loadProducts(ProductType prodType) {
@@ -9,9 +10,40 @@ class ProductRepository {
     // ----------------------       Tazas      ----------------------------//
     // ----------------------              ----------------------------//
 
-    //if (prodType == ProductType.POSTRES) {
-    // TODO: Agregar al menos 5 productos "postres"
-    //}
+    if (prodType == ProductType.TAZAS) {
+      return <ProductCup>[
+        ProductCup(
+          productTitle: "Taza tall ceramica",
+          productDescription: "Taza alta 20cm",
+          productImage: "",
+          productColor: ProductColor.BLACK,
+        ),
+        ProductCup(
+          productTitle: "Taza haza minimalista",
+          productDescription: "Taza haza partida",
+          productImage: "",
+          productColor: ProductColor.BLUE,
+        ),
+        ProductCup(
+          productTitle: "Taza ceramica",
+          productDescription: "Taza alta 15cm",
+          productImage: "",
+          productColor: ProductColor.WHITE,
+        ),
+        ProductCup(
+          productTitle: "Taza te con filtro",
+          productDescription: "Ideal para tizanas y té",
+          productImage: "",
+          productColor: ProductColor.BLUE,
+        ),
+        ProductCup(
+          productTitle: "Taza asimetrica",
+          productDescription: "Edicion especial",
+          productImage: "",
+          productColor: ProductColor.BLACK,
+        ),
+      ];
+    }
 
     // ----------------------              ----------------------------//
     // ----------------------       Granos      ----------------------------//
